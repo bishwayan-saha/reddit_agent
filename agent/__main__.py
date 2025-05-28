@@ -1,9 +1,14 @@
+import logging
+
 import click
 
 from agent.agent import RedditAgent
 from agent.task_manager import RedditAgentTaskManager
 from models.agent import AgentCapabilities, AgentCard, AgentSkill
 from server.server import A2AServer
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 @click.command()
@@ -13,6 +18,7 @@ def main(host, port):
     """
     This function sets up everything needed to start the agent server.
     """
+    logger.info(" --- Host Agent Started --- ")
 
     # Define what this agent can do – in this case, it does NOT support streaming
     capabilities = AgentCapabilities(streaming=False)
