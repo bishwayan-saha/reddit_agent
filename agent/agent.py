@@ -4,7 +4,7 @@ import os
 import praw
 import requests
 from dotenv import load_dotenv
-from google.adk.agents.llm_agent import LlmAgent
+from google.adk.agents import Agent
 from google.adk.artifacts import InMemoryArtifactService
 from google.adk.memory.in_memory_memory_service import InMemoryMemoryService
 from google.adk.runners import Runner
@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_reddit_news(subreddit: str, limit: int) -> dict[str, list[str]]:
+def get_reddit_news(subreddit: str, limit: int=3) -> dict[str, list[str]]:
     """
     Fetches top post titles from a specified subreddit using the Reddit API.
 
@@ -77,9 +77,9 @@ class RedditAgent:
             memory_service=InMemoryMemoryService(),  # Optional: remembers past messages
         )
 
-    def _build_agent(self) -> LlmAgent:
+    def _build_agent(self) -> Agent:
         """Creates and returns an LlmAgent instance"""
-        return LlmAgent(
+        return Agent(
             model="gemini-2.0-flash",
             name="reddit_agent",
             description="""A specialized Reddit agent that searches for relevant posts on a given subreddit.""",

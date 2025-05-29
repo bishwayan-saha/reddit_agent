@@ -18,7 +18,7 @@ def main(host, port):
     """
     This function sets up everything needed to start the agent server.
     """
-    logger.info(" --- Host Agent Started --- ")
+    logger.info(" --- Reddit Agent Started --- ")
 
     # Define what this agent can do – in this case, it does NOT support streaming
     capabilities = AgentCapabilities(streaming=False)
