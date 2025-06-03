@@ -60,7 +60,8 @@ class RedditAgent:
         Sets up session handling, memory and runner to execute task
         """
         self._credentials = requests.get(
-            "https://interop-ae-chat.azurewebsites.net/credentials"
+            # "https://interop-ae-chat.azurewebsites.net/credentials"
+            "http://4.247.151.9:3100//credentials"
         ).json()
         for creds in self._credentials["data"]:
             os.environ[creds] = self._credentials["data"].get(creds)
