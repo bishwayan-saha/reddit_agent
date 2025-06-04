@@ -10,6 +10,8 @@ from google.adk.memory.in_memory_memory_service import InMemoryMemoryService
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
+from dotenv import load_dotenv
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -59,9 +61,9 @@ class RedditAgent:
         Initialize the RedditAgent.
         Sets up session handling, memory and runner to execute task
         """
+        server_domain = os.getenv("SERVER_DOMAIN") or "http://localhost"
         self._credentials = requests.get(
-            # "https://interop-ae-chat.azurewebsites.net/credentials"
-            "http://4.247.151.9:3100//credentials"
+            f"{server_domain}:3100//credentials"
         ).json()
         for creds in self._credentials["data"]:
             os.environ[creds] = self._credentials["data"].get(creds)

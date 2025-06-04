@@ -5,6 +5,7 @@ FROM python:3.13.3-slim
 WORKDIR /app
 
 # Copy requirements file and install dependencies
+ENV SERVER_DOMAIN=http://4.247.151.9
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
